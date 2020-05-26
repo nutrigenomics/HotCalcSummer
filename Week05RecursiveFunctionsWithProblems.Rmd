@@ -1,0 +1,51 @@
+---
+title: "Recursive Function Exercise"
+author: "Audrey Olson"
+date: "5/25/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+For all of these functions, you will learn the most if you:
+
+  a. First try your hardest to do it without looking anything up. SERIOUSLY.
+  b. Then, allow yourself to Google function terms and other shortcuts. 
+  c. THEN, when you've exhausted all of your own efforts, permit yourself to look at examples. 
+  d. THEN, compare examples for common elements/structures. Summarize what's in commong.
+  e. FINALLY, try again, by yourself, to see how far you can get on your own.
+  f. Repeat d. and e. until you are able to author a recursive function of your own for these problems. Oh, wait, I just trapped you in a recursive Rmarkdown script writing function! Muhahahaha!
+
+Hint: use Recall within the function to make reference to the function itself, just as you would use the function name with ().
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Write a recursive function that calculates the Fibonacci sequence.
+
+Via Wikipedia: https://en.wikipedia.org/wiki/Fibonacci_number 
+"In mathematics, the Fibonacci numbers, commonly denoted Fn, form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1. ... The sequence unfolds as follows: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144..."
+
+```{r}
+
+
+```
+
+Write a recursive function that sorts a randomly generated list of decimal vector values:
+
+```{r}
+
+list <- runif(100)
+
+
+
+```
+
+Finding sum of series 1²+2²+3²+…..+n² using a recursive function
+
+```{r}
+
+
+```
+
