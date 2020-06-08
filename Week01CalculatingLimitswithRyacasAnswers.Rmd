@@ -1,0 +1,43 @@
+---
+title: "Limits and Continuity in R"
+author: "Audrey Olson"
+date: "5/25/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This basic exercise is meant for you to learn how to use the Ryacas library to calculate basic limits.
+
+```{r}
+
+install.packages("Ryacas")
+
+library(Ryacas)
+
+x <- ysym("x")      # Defining x as a symbolic variable
+
+lim(sin(x)/x, x, 0) # Limit of sin(x)/x as x approaches 0
+
+```
+
+```{r}
+
+# Use Ryacas to find the limit for the following functions:
+
+#  = x^2, as x -> 3
+
+lim(x**2, x, 3)
+
+# y = 2x, as x -> 10
+
+lim(2*x, x, 10)
+
+# y = 7x + 2, as x -> -5
+
+lim(7*x+2, x, -5)
+
+```
+
