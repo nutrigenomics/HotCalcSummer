@@ -1,0 +1,142 @@
+---
+title: 'Differentiating and Solving Differential Equations in RStudio: Function Practice'
+author: "Audrey Olson"
+date: "6/7/2020"
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+# install.packages("mosaic") # For plotFun function
+# install.packages("mosaicCalc") # For the calculus stuff
+# install.packages("deSolve")
+
+library(mosaic)
+library(mosaicCalc)
+library(deSolve)
+
+# Just if you need it for help:
+#example(D)
+
+```
+
+
+For the equations: (x^2), (x^2 + 3x + 6), sin(x), (1/x), and ln(x):
+
+```{r}
+
+# 1. Use makeFun to turn the equations into Functions, and then call a vector, titled "vec", within each function in the a(vec) format. This vector - representing the x values 1, 2, 5, 10 - can be used this way to test the function at these values.
+
+# Look around the 3.5 minute mark of the Derivatives in R video to see how the demonstrator uses makeFun to store these functions in an f(x) format.
+
+vec <- c(1, 2, 5, 10)
+
+a = makeFun(x^2 ~ x)
+a(vec)
+
+b = makeFun(x^2 + 3*x + 6 ~ x)
+b(vec)
+
+c = makeFun(sin(x) ~ x)
+c(vec)
+
+d = makeFun((1/x) ~ x)
+d(vec)
+
+e = makeFun(log(x) ~ x)
+e(vec)
+
+```
+
+  
+```{r}
+
+# 2. Use the D() function to find the derivative formula of the previous equations, using the D(a(x)~x) format.
+
+# Make sure you have read Chapter 5 of Start R in Calculus (Kaplan, http://www.tf.uns.ac.rs/~omorr/radovan_omorjan_003_prII/r-examples/StartR-master.pdf) before you tackle this! The mosiac package (shown in the Kaplan text) no longer holds these functions; use the first block of code in this Rmd file to install the successor, mosaicCalc, via install.packages("mosaicCalc") and load the library via library(mosaicCalc)
+
+D(a(x)~x)
+
+D(b(x)~x)
+
+D(c(x)~x)
+
+D(d(x)~x)
+
+D(e(x)~x)
+
+```
+
+```{r}
+
+#  3. Store the D() functions written in 1. to a variable, g. Use a g(x) type calling format to find the derivative values at these same x values of 1, 2, 5, 10. Check the Derivatives in R video (https://www.youtube.com/watch?v=X1QHNsoch98) and Chapter 5 in Start R in Calculus (http://www.tf.uns.ac.rs/~omorr/radovan_omorjan_003_prII/r-examples/StartR-master.pdf).
+
+# Hint: you can set up a vector (call it "vec") for all the x values, and then call the function like g(vec), h(vec), etc.
+
+g <- D(x^2 ~ x)
+g(vec)
+
+h <- D(x^2 + 3*x + 6 ~ x)
+h(vec)
+
+i <- D(sin(x) ~ x)
+i(vec)
+
+j <- D((1/x) ~ x)
+j(vec)
+
+k <- D(log(x) ~ x)
+k(vec)
+
+```
+
+```{r}
+# 4. Plot each of the variables and their derivatives on the same graph, using a green line for the derivatives.
+
+# Hint: to get started on plotting these functions, double check the end of the Derivatives in R video assigned for this week: https://www.youtube.com/watch?v=X1QHNsoch98
+
+plotFun(a, x.lim = range(-5, 5), y.lim = range(-5, 5))
+plotFun(g, x.lim = range(-5, 5), y.lim = range(-5, 5), col = "green", add = TRUE)
+
+plotFun(b, x.lim = range(-5, 5), y.lim = range(-5, 5))
+plotFun(h, x.lim = range(-5, 5), y.lim = range(-5, 5), col = "green", add = TRUE)
+
+plotFun(c, x.lim = range(-5, 5), y.lim = range(-5, 5))
+plotFun(i, x.lim = range(-5, 5), y.lim = range(-5, 5), col = "green", add = TRUE)
+
+plotFun(d, x.lim = range(-5, 5), y.lim = range(-5, 5))
+plotFun(j, x.lim = range(-5, 5), y.lim = range(-5, 5), col = "green", add = TRUE)
+
+plotFun(e, x.lim = range(-5, 5), y.lim = range(-5, 5))
+plotFun(k, x.lim = range(-5, 5), y.lim = range(-5, 5), col = "green", add = TRUE)
+
+```
+
+
+```{r}
+
+#  5. Plot the functions on one shared graph, in different colors
+
+plotFun(g, x.lim = range(-5, 5), y.lim = range(-5, 5), col = "red")
+plotFun(h, x.lim = range(-5, 5), y.lim = range(-5, 5), col = "orange", add = TRUE)
+plotFun(i, x.lim = range(-5, 5), y.lim = range(-5, 5), col = "green", add = TRUE)
+plotFun(j, x.lim = range(-5, 5), y.lim = range(-5, 5), col = "blue", add = TRUE)
+plotFun(k, x.lim = range(-5, 5), y.lim = range(-5, 5), col = "purple", add = TRUE)
+
+```
+
+```{r}
+
+# 6. Plot the SIR model using the integrateODE() functions (https://www.youtube.com/watch?v=lW2IQ0_I3mQ), as shown
+
+epi = integrateODE(dS~-a*S*I, dI~a*S*I - b*I, a = 0.0026, b = 0.5, S = 762, I = 1, tdur = list(from=0, to=20))
+plotFun(epi$S(t)~t, t.lim = range(0, 20))
+plotFun(epi$I(t)~t, t.lim = range(0, 20), add = TRUE, col = "red")
+
+```
